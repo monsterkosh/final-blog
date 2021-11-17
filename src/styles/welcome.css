@@ -1,0 +1,36 @@
+.welcome-container {
+    
+    background: url('../assets/peakpx.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+    height: 30%;
+    margin-bottom: 20%;
+}
+
+.w-title {
+    font-size: 5rem;
+    text-align: center;
+}
+
+.w-title h1 {
+    font-size: 3rem;
+}
+
+.w-subtitle {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 1.2rem;
+}

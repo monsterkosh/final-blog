@@ -1,0 +1,14 @@
+.app-wrapper {
+    display: flex;
+}
+
+.app-left {
+    width: 60%;
+    height: 100vh;
+}
+
+.app-right {
+    width: 40%;
+    height: 100vh;
+    overflow: hidden;
+}

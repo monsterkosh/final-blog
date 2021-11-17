@@ -1,0 +1,31 @@
+.posts-wrapper {
+   height: 100%;
+    width: 100%;
+}
+
+.post-container {
+    padding: 20px;
+}
+
+.card--body {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0rem 1rem;
+}
+
+.card--header {
+    padding: 0.2rem 1rem;
+    margin-bottom: 0;
+    background-color: rgba(13, 109, 253, 0.527);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.card--text, .card--subtext{
+    margin: 0.3rem 0.2rem;
+}
+
+span {
+    color: rgba(0, 0, 0, 0.329);
+}

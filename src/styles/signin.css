@@ -1,0 +1,25 @@
+.signin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signin-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;    
+}
+
+.arrow {
+    margin-top: 100px;
+}
+
+svg {
+    width: 30px;
+    height: 30px;
+}
+
