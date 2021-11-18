@@ -12,7 +12,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-// test
-// asdasd
-// test3
