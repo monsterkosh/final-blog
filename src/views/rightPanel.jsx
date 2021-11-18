@@ -1,11 +1,14 @@
 import React from 'react';
-import Navbar from './navbar';
+import { useSelector } from 'react-redux';
 
 const RightPanel = () => {
+  // @ts-ignore
+  const pageToRender = useSelector((state) => state.page.page);
+
   return (
     <div className='right-container'>
       <div className='right-wrapper'>
-        <Navbar />
+        <span>{pageToRender}</span>
       </div>
     </div>
   );
