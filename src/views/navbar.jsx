@@ -1,27 +1,37 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React from 'react';
 import Posts from '../components/postCard';
 import SignIn from '../components/signIn';
 import Profile from '../components/profile';
+import CreatePost from '../components/createPost';
 import '../styles/navbar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { change } from '../redux/pageSlice';
-import { activePosts, activeSign } from '../redux/activeSlice';
+import {
+  activeCreate,
+  activePosts,
+  activeProfile,
+  activeSign,
+} from '../redux/activeSlice';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const postActive = useSelector((state) => state.active.posts);
   const signActive = useSelector((state) => state.active.sign);
   const profileActive = useSelector((state) => state.active.profile);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const createActive = useSelector((state) => state.active.create);
+  const isLogged = useSelector((state) => state.auth.user);
 
   const handleDispatch = (page, state) => {
     dispatch(change(page));
-    console.log(page);
     if (state === 'post') {
       dispatch(activePosts());
     } else if (state === 'sign') {
       dispatch(activeSign());
+    } else if (state === 'create') {
+      dispatch(activeCreate());
+    } else if (state === 'profile') {
+      dispatch(activeProfile());
     }
   };
 
@@ -42,8 +52,21 @@ const Navbar = () => {
           >
             Posts
           </button>
+          <button
+            className={`nav-link ${createActive}`}
+            id='nav-home-tab'
+            data-bs-toggle='tab'
+            data-bs-target='#nav-home'
+            type='button'
+            role='tab'
+            aria-controls='nav-home'
+            aria-selected='false'
+            onClick={() => handleDispatch(<CreatePost />, 'create')}
+          >
+            Add a post
+          </button>
 
-          {loggedIn ? (
+          {isLogged ? (
             <button
               className={`nav-link ${profileActive}`}
               id='nav-contact-tab'
@@ -69,7 +92,7 @@ const Navbar = () => {
               aria-selected='false'
               onClick={() => handleDispatch(<SignIn />, 'sign')}
             >
-              Sign-ing
+              Sign-in
             </button>
           )}
         </div>

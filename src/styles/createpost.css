@@ -1,0 +1,24 @@
+.createpost-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center; 
+ }
+ 
+ .createpost-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+ }
+
+ .createpost-warning {
+    font-size: 1.1rem;
+    text-align: center;
+ }
+
+ .createpost-warning button {
+    margin-top: 100px;
+ }

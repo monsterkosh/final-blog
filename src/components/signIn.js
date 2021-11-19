@@ -1,11 +1,22 @@
 import React from 'react';
+import { activePosts } from '../redux/activeSlice';
+import { useDispatch } from 'react-redux';
+import { change } from '../redux/pageSlice';
 import '../styles/signin.css';
+import Posts from './postCard';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
+  const handleDispatch = (page) => {
+    dispatch(change(page));
+    dispatch(activePosts());
+  };
+
   return (
     <div className='signin-container'>
       <div className='signin-wrapper'>
-        <h2 className='text-capitalize fw-bold mb-5'>Login</h2>
+        <h2 className='text-capitalize fw-bold mb-5'>Sign in</h2>
         <form>
           <div className='form-floating mb-3'>
             <input
@@ -56,6 +67,7 @@ const SignIn = () => {
           <button
             type='button'
             className='btn btn-outline-secondary fw-bold mb-2 arrow-button'
+            onClick={() => handleDispatch(<Posts />)}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
