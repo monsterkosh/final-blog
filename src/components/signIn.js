@@ -29,19 +29,18 @@ const SignIn = () => {
         if (user.email === 'admin@admin.com') {
           dispatch(loginAdmin());
           dispatch(login());
-          // console.log('Welcome Master: ', user);
         } else {
           dispatch(login());
-          // console.log(user);
         }
         dispatch(setUid(user.uid));
         getUsers().then((user) => {
           user.map((x) => {
-            if (x.uid == userID) {
+            if (x.uid === userID) {
               dispatch(setUsername(x.username));
               dispatch(setUserEmail(x.email));
               dispatch(setUserUid(x.uid));
             }
+            return x;
           });
         });
 

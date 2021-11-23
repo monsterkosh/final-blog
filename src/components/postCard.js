@@ -21,7 +21,7 @@ const Posts = () => {
 
   useEffect(() => {
     handleGetPosts();
-  }, []);
+  });
 
   return (
     <div className='post-container'>
