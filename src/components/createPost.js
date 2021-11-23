@@ -1,36 +1,35 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { change } from '../redux/pageSlice';
-import { activeSign } from '../redux/activeSlice';
-import SignIn from './signIn';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../services/firestoreService';
 import '../styles/createpost.css';
+import NotLogged from './notLogged';
 
 const CreatePost = () => {
   const dispatch = useDispatch();
   // @ts-ignore
   const isLogged = useSelector((state) => state.auth.user);
 
-  const handleDispatch = (page) => {
-    dispatch(change(page));
-    dispatch(activeSign());
-  };
+  async function createDoc() {
+    const docRef = await addDoc(collection(db, 'posts'), {
+      author: 'Developer',
+      title: 'imaginary title',
+      text: 'Japan is the shit',
+      // times: fb.firestore.FieldValue.serverTimestamp(),
+    });
+    console.log('Document written with ID: ', docRef.id);
+  }
 
   return (
     <div className='createpost-container'>
       <div className='createpost-wrapper'>
         {isLogged ? (
-          <div>Create post</div>
-        ) : (
-          <div className='createpost-warning'>
-            <div>You need to be logged in to create a post.</div>
-            <button
-              className='btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2'
-              type='submit'
-              onClick={() => handleDispatch(<SignIn />)}
-            >
-              Sign In
-            </button>
+          <div>
+            Create post
+            <button onClick={() => createDoc()}>send</button>
           </div>
+        ) : (
+          <NotLogged />
         )}
       </div>
     </div>

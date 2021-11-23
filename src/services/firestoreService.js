@@ -11,8 +11,8 @@ const firebaseConfig = {
   measurementId: 'G-ND0CR4Q33P',
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 export async function getPosts() {
   const dbase = [];
