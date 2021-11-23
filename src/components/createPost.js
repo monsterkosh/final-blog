@@ -25,7 +25,7 @@ const CreatePost = () => {
       <div className='createpost-wrapper'>
         {isLogged ? (
           <div>
-            Create post
+            Create new post
             <button onClick={() => createDoc()}>send</button>
           </div>
         ) : (
