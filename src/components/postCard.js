@@ -46,7 +46,7 @@ const Posts = () => {
                     handleSelectPost(data);
                   }}
                 >
-                  view
+                  View
                 </button>
               </div>
             );
