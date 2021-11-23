@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import '../styles/welcome.css';
 import DisplayPost from './displayPost';
@@ -16,8 +17,8 @@ const WelcomePage = () => {
             <h1>BlogPlace</h1>
           </div>
           <div className='w-subtitle'>
-            welcome to your traveling blog place, where we share our experiences
-            around the world
+            Welcome to your traveling blog place, where we share our experiences
+            around the world.
           </div>
           <div className='w-users'>
             <p>Test User:</p>

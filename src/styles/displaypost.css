@@ -1,6 +1,17 @@
 .display-container {
     display: flex;
+    justify-content: center;
+    /* max-height: 100vh; */
+}
+
+.display-wrapper {
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    width: 80%;
+    height: 100%;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.384);
 }
 
 .selected-title { 
@@ -8,4 +19,29 @@
     color: white;
     text-align: center;
     font-weight: bold;
+    margin-bottom: 30px;
 } 
+
+.selected-text {
+    margin: 20% 0px;
+    color: rgba(255, 255, 255, 0.911);
+    max-height: 90vh;
+}
+
+.selected-author {
+    margin-top: 15%;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.589);
+}
+
+.selected-date {
+    color: rgba(255, 255, 255, 0.589);
+}
+
+
+@media screen and (max-width: 600px) {
+    .display-container {
+        font-size: 0.7rem;
+    }
+
+}

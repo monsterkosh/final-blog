@@ -3,10 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
 .signin-wrapper {
+    margin: 30% 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
