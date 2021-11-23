@@ -1,0 +1,11 @@
+.display-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.selected-title { 
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+} 

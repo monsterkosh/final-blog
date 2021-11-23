@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react';
+// @ts-nocheck
+import React, { useEffect } from 'react';
 import '../styles/post.css';
 import { getPosts } from '../services/firestoreService';
+import { useDispatch, useSelector } from 'react-redux';
+import { posts, selectPost } from '../redux/postSlice';
 
 const Posts = () => {
-  const [dbase, setDbase] = useState([]);
+  const dbase = useSelector((state) => state.posts.allPosts);
+  const dispatch = useDispatch();
 
   function handleGetPosts() {
     getPosts().then((items) => {
-      setDbase(items);
+      dispatch(posts(items));
     });
+  }
+
+  function handleSelectPost(data) {
+    dispatch(selectPost(data));
   }
 
   useEffect(() => {
@@ -17,21 +25,33 @@ const Posts = () => {
 
   return (
     <div className='post-container'>
-      {dbase.map((data, key) => {
-        return (
-          <div key={key} className='text-dark bg-light mb-3'>
-            <div className='card--header'>{data.title}</div>
-            <div className='card--body'>
-              <p className='card--text'>
-                Author: <span>{data.author}</span>
-              </p>
-              <p className='card--subtext'>
-                Date: <span>{data.date.substring(0, 10)}</span>
-              </p>
-            </div>
-          </div>
-        );
-      })}
+      {dbase
+        ? dbase.map((data, key) => {
+            return (
+              <div className='post-card mb-3'>
+                <div key={key} className='text-dark bg-light mb-0 post-box'>
+                  <div className='card--header'>{data.title}</div>
+                  <div className='card--body'>
+                    <p className='card--text'>
+                      Author: <span>{data.author}</span>
+                    </p>
+                    <p className='card--subtext'>
+                      Date: <span>{data.date.substring(0, 10)}</span>
+                    </p>
+                  </div>
+                </div>
+                <button
+                  className='post-button button btn btn-primary'
+                  onClick={() => {
+                    handleSelectPost(data);
+                  }}
+                >
+                  view
+                </button>
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };

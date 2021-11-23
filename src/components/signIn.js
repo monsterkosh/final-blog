@@ -5,7 +5,9 @@ import { activePosts } from '../redux/activeSlice';
 import { useDispatch } from 'react-redux';
 import { change } from '../redux/pageSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { login, loginAdmin } from '../redux/authSlice';
+import { login, loginAdmin, setUid } from '../redux/authSlice';
+import { setUsername, setUserEmail, setUserUid } from '../redux/userSlice';
+import { getUsers } from '../services/firestoreService';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -23,14 +25,26 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        const userID = user.uid;
         if (user.email === 'admin@admin.com') {
           dispatch(loginAdmin());
           dispatch(login());
-          console.log('Welcome Master: ', user.email);
+          // console.log('Welcome Master: ', user);
         } else {
           dispatch(login());
-          console.log(user.email);
+          // console.log(user);
         }
+        dispatch(setUid(user.uid));
+        getUsers().then((user) => {
+          user.map((x) => {
+            if (x.uid == userID) {
+              dispatch(setUsername(x.username));
+              dispatch(setUserEmail(x.email));
+              dispatch(setUserUid(x.uid));
+            }
+          });
+        });
+
         handleDispatch(<Posts />);
       })
       .catch((error) => {
@@ -100,8 +114,6 @@ const SignIn = () => {
           <button
             type='button'
             className='btn btn-outline-secondary fw-bold mb-2 arrow-button'
-            // onClick={() => handleDispatch(<Posts />)}
-            // onClick={() => getAuth()}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'

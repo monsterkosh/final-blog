@@ -22,3 +22,13 @@
  .createpost-warning button {
     margin-top: 100px;
  }
+
+ .form-title {
+    margin-bottom: 30px;
+ }
+
+ .form-button {
+   margin-top: 30px;
+   display: flex;
+   justify-content:flex-end;
+ }

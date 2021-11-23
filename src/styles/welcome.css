@@ -15,7 +15,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 60%;
-    height: 30%;
+    height: 50%;
     margin-bottom: 20%;
 }
 
@@ -32,4 +32,8 @@
     text-align: center;
     color: whitesmoke;
     font-size: 1.2rem;
+}
+
+.w-users {
+    color: white;
 }

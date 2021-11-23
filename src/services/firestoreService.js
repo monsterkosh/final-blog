@@ -23,8 +23,22 @@ export async function getPosts() {
       title: doc.data().title,
       text: doc.data().text,
       author: doc.data().author,
-      date: doc.data().date.toDate().toLocaleString(),
+      date: doc.data().date.toDate().toLocaleString() || ' ',
     });
   });
   return dbase;
+}
+
+export async function getUsers() {
+  const userDb = [];
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  querySnapshot.forEach((doc) => {
+    userDb.push({
+      id: doc.id,
+      email: doc.data().email,
+      username: doc.data().username,
+      uid: doc.data().uid,
+    });
+  });
+  return userDb;
 }
