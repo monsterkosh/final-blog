@@ -7,6 +7,7 @@ import { posts, selectPost } from '../redux/postSlice';
 
 const Posts = () => {
   const dbase = useSelector((state) => state.posts.allPosts);
+  const isAdmin = useSelector((state) => state.auth.admin);
   const dispatch = useDispatch();
 
   function handleGetPosts() {
@@ -17,6 +18,10 @@ const Posts = () => {
 
   function handleSelectPost(data) {
     dispatch(selectPost(data));
+  }
+
+  function handleDelete(id) {
+    console.log(id);
   }
 
   useEffect(() => {
@@ -48,6 +53,17 @@ const Posts = () => {
                 >
                   View
                 </button>
+
+                {isAdmin ? (
+                  <button
+                    className='post-button button btn btn-danger'
+                    onClick={() => {
+                      handleDelete(data.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                ) : null}
               </div>
             );
           })

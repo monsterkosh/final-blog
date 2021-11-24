@@ -25,6 +25,8 @@ const WelcomePage = () => {
             <p>test@test.com </p>
             <p>test123</p>
           </div>
+          <div className='w-error'>FirebaseError: Quota exceeded. </div>
+          <div className='w-error-msg'>Currently working to fix this issue</div>
         </div>
       )}
     </div>
