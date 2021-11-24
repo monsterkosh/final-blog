@@ -20,13 +20,6 @@ const WelcomePage = () => {
             Welcome to your traveling blog place, where we share our experiences
             around the world.
           </div>
-          <div className='w-users'>
-            <p>Test User:</p>
-            <p>test@test.com </p>
-            <p>test123</p>
-          </div>
-          <div className='w-error'>FirebaseError: Quota exceeded. </div>
-          <div className='w-error-msg'>Currently working to fix this issue</div>
         </div>
       )}
     </div>
