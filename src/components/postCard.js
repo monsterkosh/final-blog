@@ -28,7 +28,7 @@ const Posts = () => {
 
   useEffect(() => {
     handleGetPosts();
-    console.log('requesting');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
