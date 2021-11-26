@@ -19,4 +19,4 @@ https://blogplace.netlify.app/
 ## Users
 
 User: test@test.com / user123
-Admin admin@admin.com / admin123
+Admin Ask me for this account
