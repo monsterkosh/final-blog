@@ -3,13 +3,13 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { doc, deleteDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyADSqO_rjouqzxtlnzN3auZLD_8ODWFyOY',
-  authDomain: 'blogplace-f86de.firebaseapp.com',
-  projectId: 'blogplace-f86de',
-  storageBucket: 'blogplace-f86de.appspot.com',
-  messagingSenderId: '384850488899',
-  appId: '1:384850488899:web:83d1f1c247e2cbd8d0aef6',
-  measurementId: 'G-ND0CR4Q33P',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 export const app = initializeApp(firebaseConfig);
