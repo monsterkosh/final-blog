@@ -21,6 +21,7 @@ const Navbar = () => {
   const profileActive = useSelector((state) => state.active.profile);
   const createActive = useSelector((state) => state.active.create);
   const isLogged = useSelector((state) => state.auth.user);
+  const isAdmin = useSelector((state) => state.auth.admin);
 
   const handleDispatch = (page, state) => {
     dispatch(change(page));
@@ -66,7 +67,7 @@ const Navbar = () => {
             Add a post
           </button>
 
-          {isLogged ? (
+          {isLogged || isAdmin ? (
             <button
               className={`nav-link ${profileActive}`}
               id='nav-contact-tab'

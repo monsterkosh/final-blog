@@ -36,6 +36,7 @@ const PostForm = () => {
   return (
     <div className='postform-container'>
       <div className='postform-wrapper'>
+        <div className='postform-title'>Create a new post</div>
         <form
           onSubmit={(e) => {
             createDoc(e);
@@ -59,11 +60,15 @@ const PostForm = () => {
               onChange={(e) => setText(e.target.value)}
             ></textarea>
           </div>
-          <button className='btn btn-md btn-primary' type='submit'>
-            Post
-          </button>
+          <div class='col-md-12 text-center'>
+            <button
+              className='btn btn-md btn-primary text-center form-button'
+              type='submit'
+            >
+              Post
+            </button>
+          </div>
         </form>
-        <div className='form-button'></div>
       </div>
     </div>
   );

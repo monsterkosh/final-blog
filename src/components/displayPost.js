@@ -9,7 +9,7 @@ const DisplayPost = () => {
   return (
     <div className='display-container'>
       <div className='display-wrapper'>
-        <div className='selectedpost'>
+        <div className='selected-post'>
           <div className='selected-title'>{selectedPost.title}</div>
           <div className='selected-text'>{selectedPost.text}</div>
           <div className='selected-author'>{selectedPost.author}</div>

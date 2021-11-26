@@ -28,7 +28,6 @@ const SignIn = () => {
         const userID = user.uid;
         if (user.email === 'admin@admin.com') {
           dispatch(loginAdmin());
-          dispatch(login());
         } else {
           dispatch(login());
         }

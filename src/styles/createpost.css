@@ -1,35 +1,40 @@
 .createpost-wrapper {
-   margin: 30% 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center; 
- }
- 
- .createpost-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
- }
+  margin: 30% 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
 
- .createpost-warning {
-    font-size: 1.1rem;
-    text-align: center;
- }
+.createpost-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
- .createpost-warning button {
-    margin-top: 100px;
- }
+.createpost-warning {
+  font-size: 1.1rem;
+  text-align: center;
+}
 
- .form-title {
-    margin-bottom: 30px;
- }
+.createpost-warning button {
+  margin-top: 100px;
+}
 
- .form-button {
-   margin-top: 30px;
-   display: flex;
-   justify-content:flex-end;
- }
+.form-title {
+  margin-bottom: 30px;
+}
+
+.form-button {
+  margin-top: 30px;
+}
+
+.postform-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 40px;
+}

@@ -4,6 +4,7 @@ import '../styles/post.css';
 import { getPosts } from '../services/firestoreService';
 import { useDispatch, useSelector } from 'react-redux';
 import { posts, selectPost } from '../redux/postSlice';
+import { deletePost } from '../services/firestoreService';
 
 const Posts = () => {
   const dbase = useSelector((state) => state.posts.allPosts);
@@ -21,7 +22,7 @@ const Posts = () => {
   }
 
   function handleDelete(id) {
-    console.log(id);
+    deletePost(id);
   }
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Posts = () => {
             return (
               <div className='post-card mb-3'>
                 <div key={key} className='text-dark bg-light mb-0 post-box'>
-                  <div className='card--header'>{data.title}</div>
+                  <div className='card--header'>Title: {data.title}</div>
                   <div className='card--body'>
                     <p className='card--text'>
                       Author: <span>{data.author}</span>
@@ -45,25 +46,27 @@ const Posts = () => {
                     </p>
                   </div>
                 </div>
-                <button
-                  className='post-button button btn btn-primary'
-                  onClick={() => {
-                    handleSelectPost(data);
-                  }}
-                >
-                  View
-                </button>
-
-                {isAdmin ? (
+                <div className='buttons'>
                   <button
-                    className='post-button button btn btn-danger'
+                    className='post-button btn-sm button btn btn-primary'
                     onClick={() => {
-                      handleDelete(data.id);
+                      handleSelectPost(data);
                     }}
                   >
-                    Delete
+                    View
                   </button>
-                ) : null}
+
+                  {isAdmin ? (
+                    <button
+                      className='post-button btn-sm button btn btn-danger'
+                      onClick={() => {
+                        handleDelete(data.id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
+                </div>
               </div>
             );
           })

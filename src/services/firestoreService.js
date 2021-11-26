@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { doc, deleteDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyADSqO_rjouqzxtlnzN3auZLD_8ODWFyOY',
@@ -41,4 +42,8 @@ export async function getUsers() {
     });
   });
   return userDb;
+}
+
+export async function deletePost(id) {
+  await deleteDoc(doc(db, 'posts', id));
 }
