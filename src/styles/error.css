@@ -1,0 +1,30 @@
+.error-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.error-container {
+  padding: 10px;
+}
+
+.post-error {
+  font-size: 1rem;
+  margin: 10% 0;
+}
+
+.post-firebase-error span {
+  color: red;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.post-error-msg {
+  margin: 20% 0;
+}
+
+.error-img {
+  max-width: 200px;
+  border-radius: 50%;
+  display:block;
+  margin:auto;
+}

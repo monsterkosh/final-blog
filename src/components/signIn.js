@@ -48,7 +48,7 @@ const SignIn = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log('ERROR ', errorCode, errorMessage);
+        console.log('ERROR ', errorCode, errorMessage); // Reemplazar por toast
       });
   }
 
@@ -81,20 +81,7 @@ const SignIn = () => {
             />
             <label htmlFor='floatingPassword'>Password</label>
           </div>
-
-          <div className='form-check mb-3'>
-            <input
-              className='form-check-input'
-              type='checkbox'
-              value=''
-              id='rememberPasswordCheck'
-            />
-            <label className='form-check-label' htmlFor='rememberPasswordCheck'>
-              Remember password
-            </label>
-          </div>
-
-          <div className='d-grid'>
+          <div className='d-grid pt-4'>
             <button
               className='btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2'
               type='submit'

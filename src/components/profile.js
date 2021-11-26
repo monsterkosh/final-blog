@@ -10,8 +10,6 @@ const Profile = () => {
   const activeUserEmail = useSelector((state) => state.user.email);
   const isAdmin = useSelector((state) => state.auth.admin);
 
-  console.log(isAdmin);
-
   return (
     <div className='profile-container'>
       <div className='profile-wrapper'>

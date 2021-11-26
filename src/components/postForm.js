@@ -30,7 +30,7 @@ const PostForm = () => {
       text: text,
       date: serverTimestamp(),
     });
-    console.log('Document written with ID: ', docRef.id);
+    console.log('Document written with ID: ', docRef.id); // Reemplazar por Toast
     handleDispatch(<Posts />);
   }
   return (
