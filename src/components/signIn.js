@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { change } from '../redux/pageSlice';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { login, loginAdmin, setUid } from '../redux/authSlice';
-import { setUsername, setUserEmail, setUserUid } from '../redux/userSlice';
+import { setUserEmail, setUsername } from '../redux/userSlice';
 import { getUsers } from '../services/firestoreService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -25,36 +27,54 @@ const SignIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        const userID = user.uid;
         if (user.email === 'admin@admin.com') {
           dispatch(loginAdmin());
         } else {
           dispatch(login());
         }
         dispatch(setUid(user.uid));
-        getUsers().then((user) => {
-          user.map((x) => {
-            if (x.uid === userID) {
+        // @ts-ignore
+        dispatch(setUserEmail(user.auth.currentUser.email));
+        getUsers().then((res) =>
+          res.map((x) => {
+            // @ts-ignore
+            if (user.auth.currentUser.email === x.email) {
               dispatch(setUsername(x.username));
-              dispatch(setUserEmail(x.email));
-              dispatch(setUserUid(x.uid));
             }
-            return x;
-          });
-        });
-
+            return null;
+          })
+        );
         handleDispatch(<Posts />);
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
-        console.log('ERROR ', errorCode, errorMessage); // Reemplazar por toast
+        toast.error(errorMessage, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }
 
   return (
     <div className='signin-container'>
       <div className='signin-wrapper'>
+        <ToastContainer
+          position='top-center'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <h2 className='text-capitalize fw-bold mb-5'>Sign in</h2>
         <form
           onSubmit={(e) => {

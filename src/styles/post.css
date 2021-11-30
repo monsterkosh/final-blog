@@ -25,6 +25,7 @@
 .card--text,
 .card--subtext {
   margin: 0.3rem 0.2rem;
+  text-transform: capitalize;
 }
 
 span {

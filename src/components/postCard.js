@@ -5,6 +5,8 @@ import { getPosts } from '../services/firestoreService';
 import { useDispatch, useSelector } from 'react-redux';
 import { posts, selectPost } from '../redux/postSlice';
 import { deletePost } from '../services/firestoreService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Error from '../components/error';
 
 const Posts = () => {
@@ -24,6 +26,16 @@ const Posts = () => {
 
   function handleDelete(id) {
     deletePost(id);
+    handleGetPosts();
+    toast.success('Post deleted', {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 
   useEffect(() => {
@@ -33,6 +45,17 @@ const Posts = () => {
 
   return (
     <div className='post-container'>
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {dbase ? (
         dbase.map((data, key) => {
           return (

@@ -23,6 +23,7 @@ const PostForm = () => {
 
   async function createDoc(e) {
     e.preventDefault(e);
+    // eslint-disable-next-line no-unused-vars
     const docRef = await addDoc(collection(db, 'posts'), {
       author: userName,
       authorID: userUID,
@@ -30,7 +31,6 @@ const PostForm = () => {
       text: text,
       date: serverTimestamp(),
     });
-    console.log('Document written with ID: ', docRef.id); // Reemplazar por Toast
     handleDispatch(<Posts />);
   }
   return (
@@ -60,7 +60,7 @@ const PostForm = () => {
               onChange={(e) => setText(e.target.value)}
             ></textarea>
           </div>
-          <div class='col-md-12 text-center'>
+          <div className='col-md-12 text-center'>
             <button
               className='btn btn-md btn-primary text-center form-button'
               type='submit'

@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { doc, deleteDoc } from 'firebase/firestore';
+import { getAuth, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -46,4 +47,15 @@ export async function getUsers() {
 
 export async function deletePost(id) {
   await deleteDoc(doc(db, 'posts', id));
+}
+
+export async function fsLogout() {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      // Signed out
+    })
+    .catch((error) => {
+      // An error happened.
+    });
 }

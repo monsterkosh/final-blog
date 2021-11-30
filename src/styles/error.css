@@ -1,6 +1,7 @@
 .error-wrapper {
   height: 100%;
   width: 100%;
+  margin-top: 20%;
 }
 
 .error-container {
@@ -25,6 +26,16 @@
 .error-img {
   max-width: 200px;
   border-radius: 50%;
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
+}
+
+.spinny {
+  padding-top: 20px;
+}
+
+.error-msg {
+  margin-top: 20%;
+ text-align: center;
+ font-size: 1.5rem;
 }
