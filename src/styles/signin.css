@@ -13,6 +13,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;    
+    text-align: center;
 }
 
 .arrow {
@@ -22,5 +23,20 @@
 svg {
     width: 30px;
     height: 30px;
+}
+
+.register-link {
+    margin-top: 10%;
+}
+
+.register-link button {
+    text-decoration: none;
+    background: none;
+	color: rgb(74, 74, 228);
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 

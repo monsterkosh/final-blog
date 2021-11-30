@@ -4,7 +4,11 @@ import Posts from './postCard';
 import { activePosts } from '../redux/activeSlice';
 import { useDispatch } from 'react-redux';
 import { change } from '../redux/pageSlice';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import { login, loginAdmin, setUid } from '../redux/authSlice';
 import { setUserEmail, setUsername } from '../redux/userSlice';
 import { getUsers } from '../services/firestoreService';
@@ -15,12 +19,44 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [innerPage, setInnerPage] = useState(true);
   const auth = getAuth();
 
   const handleDispatch = (page) => {
     dispatch(change(page));
     dispatch(activePosts());
   };
+
+  function handleSignUp(e) {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // const user = userCredential.user;
+        toast('User registered', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setInnerPage(true);
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage, {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  }
 
   function handleSignIn(e) {
     e.preventDefault();
@@ -75,41 +111,91 @@ const SignIn = () => {
           draggable
           pauseOnHover
         />
-        <h2 className='text-capitalize fw-bold mb-5'>Sign in</h2>
-        <form
-          onSubmit={(e) => {
-            handleSignIn(e);
-          }}
-        >
-          <div className='form-floating mb-3'>
-            <input
-              type='email'
-              className='form-control'
-              id='floatingInput'
-              placeholder='name@example.com'
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label htmlFor='floatingInput'>Email address</label>
-          </div>
-          <div className='form-floating mb-3'>
-            <input
-              type='password'
-              className='form-control'
-              id='floatingPassword'
-              placeholder='Password'
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label htmlFor='floatingPassword'>Password</label>
-          </div>
-          <div className='d-grid pt-4'>
-            <button
-              className='btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2'
-              type='submit'
+        {innerPage ? (
+          <div>
+            <h2 className='text-capitalize fw-bold mb-5'>Sign in</h2>
+            <form
+              onSubmit={(e) => {
+                handleSignIn(e);
+              }}
             >
-              Sign in
-            </button>
+              <div className='form-floating mb-3'>
+                <input
+                  type='email'
+                  className='form-control'
+                  id='floatingInput'
+                  placeholder='name@example.com'
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <label htmlFor='floatingInput'>Email address</label>
+              </div>
+              <div className='form-floating mb-3'>
+                <input
+                  type='password'
+                  className='form-control'
+                  id='floatingPassword'
+                  placeholder='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <label htmlFor='floatingPassword'>Password</label>
+              </div>
+              <div className='d-grid pt-4'>
+                <button
+                  className='btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2'
+                  type='submit'
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
+            <div className='register-link'>
+              Dont have an account ?{' '}
+              <button onClick={() => setInnerPage(false)}> Register</button>
+            </div>
           </div>
-        </form>
+        ) : (
+          <div>
+            <h2 className='text-capitalize fw-bold mb-5'>Sign up</h2>
+            <form
+              onSubmit={(e) => {
+                handleSignUp(e);
+              }}
+            >
+              <div className='form-floating mb-3'>
+                <input
+                  type='email'
+                  className='form-control'
+                  id='floatingInput'
+                  placeholder='name@example.com'
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <label htmlFor='floatingInput'>Email address</label>
+              </div>
+              <div className='form-floating mb-3'>
+                <input
+                  type='password'
+                  className='form-control'
+                  id='floatingPassword'
+                  placeholder='Password'
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <label htmlFor='floatingPassword'>Password</label>
+              </div>
+              <div className='d-grid pt-4'>
+                <button
+                  className='btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2'
+                  type='submit'
+                >
+                  Register
+                </button>
+              </div>
+            </form>
+            <div className='register-link'>
+              Already have an account ?{' '}
+              <button onClick={() => setInnerPage(true)}> Sing in</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
